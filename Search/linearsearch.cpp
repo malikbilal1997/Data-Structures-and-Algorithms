@@ -1,21 +1,34 @@
 #include <iostream>
-using namespace std;
-//Main Method
-int main() {
-    int const SIZE = 6;
-    int arr[SIZE] = {19, 16, 22, 87, 92, 23}, value;
+
+// Define the size of ARRAY
+#define ARRAY_SIZE 10
+
+
+// Perform Linear Search on Array
+void search(int array[], int value, int size)
+{
     bool flag = false;
-    cout << "Enter a Value to Search : ";
-    cin >> value;
-    for(int i = SIZE-SIZE; i < SIZE; i++) {
-        if(value == arr[i]) {
-            cout << "Value found at " << i << endl;
+    for(int i = 0; i < size; i++)
+    {
+        if(array[i] == value)
+        {
+            std::cout << "Value found at " << i << '\n';
             flag = true;
             break;
         }
     }
-    if(flag == false) {
-        cout << "Value not found." << endl;
-    }
+    if(flag == false)
+    {
+        std::cout << "Value not found." << '\n';
+    }    
+}
+
+int main() {
+    int value, array[ARRAY_SIZE] = {19, 16, 22, 87, 92, 23};
+    // Getting value to search
+    std::cout << "Enter a value to Search : ";
+    std::cin >> value;
+
+    search(array, value, ARRAY_SIZE);
     return 0;
 }

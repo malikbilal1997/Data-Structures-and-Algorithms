@@ -1,63 +1,77 @@
 #include <iostream>
-#define SIZE 10
-using namespace std;
-//Queue Class
-class Queue {
+
+#define ARRAY_SIZE 10
+
+// Circular Queue Class implemented using C array
+class Queue
+{
 private:
-    int arr[SIZE], front, rear;
+    int array[ARRAY_SIZE], front, rear;
 public:
     Queue() {
         rear = front = -1;
     }
-    //is_empty Method
-    bool is_empty() {
+    // Return true if Queue is empty else false
+    bool empty()
+    {
         return (front == -1 && rear == -1);
     }
-    //is_full Method
-    bool is_full() {
-        return (((rear+1)%SIZE) == front);
+    // Return true if Queue is full else false
+    bool full() {
+        return (((rear+1)%ARRAY_SIZE) == front);
     }
-    //enqueue Method
-    void enqueue(int x) {
-        if(is_full()) {
-            cout << "Queue is Full." << endl;
+    // Push a value at the end of Queue(Array)
+    void enqueue(int x)
+    {
+        // Checikng if Queue has space
+        if(full())
+        {
+            std::cout << "Queue is Full." << '\n';
         }
         else {
-            if(is_empty()) {
+            if(empty())
+            {
                 rear = front = 0;
-                arr[rear] = x;
+                array[rear] = x;
             }
-            else {
-                rear = (rear+1)%SIZE;
-                arr[rear] = x;
+            else
+            {
+                rear = (rear+1)%ARRAY_SIZE;
+                array[rear] = x;
             }
         }
     }
-    //dequeue Method
-    void dequeue() {
-        if(is_empty()) {
-            cout << "Queue is Empty." << endl;
+    // Pop a value from the start of Queue(Array)
+    void dequeue()
+    {
+        // Checking if Queue is empty
+        if(empty())
+        {
+            std::cout << "Queue is Empty." << '\n';
         }
-        else if(front == rear) {
+        else if(front == rear)
+        {
             rear = front  = -1;
         }
-        else {
-            front = (front+1)%SIZE;
+        else
+        {
+            front = (front+1)%ARRAY_SIZE;
         }
     }
-    //peek Method
-    int peek() {
-        if(is_empty()) {
-            cout << "Queue is Empty." << endl;
-        }
-        else {
-            return arr[front];
-        }
+    // Return first value of Queue(Array)
+    int peek() 
+    {
+        return array[front];        
     }
     
 };
 //Main Method
 int main() {
+    // Declaring Queue object
     Queue q;
-    //Todo
+
+    // Performing operations on Queue
+    q.enqueue(10);
+    q.enqueue(12);
+    std::cout << q.peek() << '\n';
 }

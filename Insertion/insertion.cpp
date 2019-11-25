@@ -1,22 +1,36 @@
 #include <iostream>
-using namespace std;
-//insert Method
-void insert(int z[], int S, int I, int K) {
-    for(int i = S-1; i >= I; i-- ) {
-        z[i] = z[i-1];
+
+// Defines the size of Array
+#define ARRAY_SIZE 10
+
+void insert(int array[], int size, int index, int key)
+{
+    // Staring from last index move values to next index upto location
+    for(int i = size-1; i >= index; i--)
+    {
+        array[i] = array[i-1];
     }
-    z[I] = K;
+    array[index] = key;
 }
-//Main Method
-int main() {
-    const int SIZE = 10;
-    int arr[SIZE] = {2,3,4,5,6,7,8,9,10};
-    int index, key;
-    cout << "Enter a Value and Location to Insert : ";
-    cin >> index >> key;
-    insert(arr, SIZE, index, key);
-    for(int i=0; i<SIZE; i++) {
-        cout << arr[i] << " ";
+
+int main()
+{    
+    int index, key, array[ARRAY_SIZE] = {2, 3, 4, 5, 6};
+
+    // Display content of Array before Insertion
+    for(int i = 0; i < ARRAY_SIZE; i++) {
+        std::cout << array[i] << " ";
     }
-    cout << endl;
+    std::cout << '\n';
+
+    // Getting Location and Value for insertion
+    std::cout << "Enter Location & Value : ";
+    std::cin >> index >> key;
+    insert(array, ARRAY_SIZE, index, key);
+
+    // Display content of Array after Insertion
+    for(int i = 0; i < ARRAY_SIZE; i++) {
+        std::cout << array[i] << " ";
+    }
+    std::cout << '\n';
 }

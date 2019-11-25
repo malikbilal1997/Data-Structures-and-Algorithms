@@ -8,7 +8,8 @@ class Queue
 private:
     int array[ARRAY_SIZE], front, rear;
 public:
-    Queue() {
+    Queue()
+    {
         rear = front = -1;
     }
     // Return true if Queue is empty else false

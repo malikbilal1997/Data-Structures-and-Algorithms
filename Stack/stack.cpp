@@ -1,45 +1,69 @@
-#include <iostream>
-#define SIZE 30
-using namespace std;
-//Stack Class
-class Stack {
+    #include <iostream>
+
+// Defines the size of Array
+#define ARRAY_SIZE 10
+
+// Class Stack implemented using C array
+class Stack
+{
 private:
-    int arr[SIZE], top;
+    int array[ARRAY_SIZE], top;
 public:
-    Stack() { 
+    Stack()
+    { 
         top = -1; 
     }
-    // push Method
-    void push(int x) {
-        if(is_full()) 
-            cout << "Stack overflow." << endl;
-        else { 
-            top++; arr[top] = x; 
+    // Push a value on top of Stack(Array)
+    void push(int value)
+    {
+        // Checking if Stack is full
+        if(full())
+        {
+            std::cout << "Stack is Full." << '\n';
+        }
+        else
+        { 
+            top++;
+            array[top] = value; 
         }
     }
-    //is_full Method
-    bool is_full() 
-        return (top >= SIZE);
-    // is_empty Method
-    bool is_empty()  
-        return (top == -1)
-    // pop Method
-    void pop() {
-        if(is_empty()) 
-            cout << "Stack underflow." << endl;
-        else 
-            top--;
+    // Return true if stack is full else false
+    bool full()
+    {
+        return (top >= ARRAY_SIZE);
     }
-    // peek Method
-    int peek() {
-        if(is_empty()) 
-            cout << "Stack underflow." << endl;
-        else 
-            return arr[top];
+    // Return true if Stack is empty else false
+    bool empty()
+    {
+        return (top == -1);
+    }
+    // Remove a value from top of Stack(Array)
+    void pop()
+    {
+        // Checking if Stack is empty
+        if(empty())
+        {
+            std::cout << "Stack underflow." << '\n';
+        } 
+        else
+        {
+            top--;
+        }
+    }
+    // Return top value of Stack(Array)
+    int peek()
+    { 
+        return array[top];
     }
 };
-//Main Method
-int main() {
+
+int main()
+{
+    // Declare Stack object
     Stack s;
-    //Todo
+    // Perform operations
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    std::cout << s.peek();
 }

@@ -1,49 +1,76 @@
 #include <iostream>
-using namespace std;
-//bubble_sort Method
-void bubble_sort(int z[], int S) {
-    bool flag; // flag for checking that no more swapping is done so terminate loop.
-    do {
+
+#define ARRAY_SIZE 10
+
+void bubble_sort(int array[], int size) {
+    // flag for checking that no more swapping is done.
+    bool flag;
+    // Repeat until sorting is done
+    do
+    {
         flag = false;
-        for(int i=0; i<S-1; i++) {
-            if(z[i] > z[i+1]) {
-                int temp = z[i];
-                z[i] = z[i+1];
-                z[i+1] = temp;
+        for(int i=0; i<size-1; i++)
+        {
+            // If first value in pair is greater swap each other
+            if(array[i] > array[i+1])
+            {
+                int temp = array[i];
+                array[i] = array[i+1];
+                array[i+1] = temp;
                 flag = true;
             }
         }
     } while(flag);
 }
-//binary_search Method
-void binary_search(int z[], int S, int K) {
-    int low = S-S, high = S-1, mid;
+
+void binary_search(int array[], int size, int key)
+{
+    // Find low point, high point and mid of Array
+    int low = size-size, high = size-1, mid;
     bool found = false;
-    while(!found && low <= high) {
+
+    // Repeat unless Values is Found AND low point do not become greater than high point 
+    while(!found && low <= high)
+    {
         mid = (low + high)/2;
-        if(K == z[mid]) {
-            cout << "Value found at " << mid << endl;
+        // Checking if mid of Array is the key
+        if(key == array[mid])
+        {
+            std::cout << "Value found at " << mid << '\n';
             found = true;
         }
-        else if(K > z[mid]) {
+        // If key is greater than the mid of array then new low point is mid + 1.
+        else if(key > array[mid])
+        {
             low = mid+1;
         }
-        else {
+        // If key is smaller than the mid of array then new high point is mid - 1.
+        else
+        {
             high = mid-1;
         }
     }
-    if(found == false) {
-        cout << "Value not found." << endl;
+    if(found == false)
+    {
+        std::cout << "Value not found." << '\n';
     }
 }
-//Main Method
-int main() {
-    int const SIZE = 10;
-    int arr[SIZE], key;
-    cout << "Enter 10 random values : ";
-    for(int i=0; i<SIZE; i++) cin >> arr[i];
-    cout << "Enter a value to search : ";
-    cin >> key;
-    bubble_sort(arr, SIZE);
-    binary_search(arr, SIZE, key);
+
+int main()
+{
+    int array[ARRAY_SIZE], key;
+    
+    // Getting some values for Array
+    std::cout << "Enter 10 random values : ";
+    for(int i = 0; i < ARRAY_SIZE; i++)
+    {
+        std::cin >> array[i];
+    }
+    // Getting the value to Search
+    std::cout << "Enter a value to search : ";
+    std::cin >> key;
+
+    // Sorting before doing Binary Search
+    bubble_sort(array, ARRAY_SIZE);
+    binary_search(array, ARRAY_SIZE, key);
 }

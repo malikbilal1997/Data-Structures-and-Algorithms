@@ -2,7 +2,8 @@
 
 #define ARRAY_SIZE 10
 
-void bubble_sort(int array[], int size) {
+void bubble_sort(int array[], int size)
+{
     // flag for checking that no more swapping is done.
     bool flag;
     // Repeat until sorting is done
